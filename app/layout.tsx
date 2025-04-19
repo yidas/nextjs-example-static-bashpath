@@ -1,3 +1,5 @@
+import Script from 'next/script'
+import { basePath } from '../next.config';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -16,7 +18,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        {/* External CSS */}
+        <link
+          rel="stylesheet"
+          href={`${basePath}/dist/css/external.css`}
+        />
+        {/* External script placed just before </body> */}
+        <Script
+          src={`${basePath}/dist/js/external-head.js`}
+        />
+      </head>
+      {/* <body className={inter.className}>{children}</body> */}
+      <body className={inter.className}>
+        {children}
+
+        {/* External script placed just before </body> */}
+        <Script
+          src={`${basePath}/dist/js/external.js`}
+        />
+      </body>
     </html>
   )
 }

@@ -1,0 +1,1 @@
+console.log('Successfully loaded the external JS file in the <head>');

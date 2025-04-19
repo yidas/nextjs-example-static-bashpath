@@ -1,0 +1,1 @@
+console.log('Successfully loaded the external JS file before the end of the <body>');

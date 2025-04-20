@@ -1,4 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+NEXT.js Example Project for Static bashpath
+===================
+
+A Next.js example project demonstrating static export with a basePath setting.
+
+Hightlights:
+
+- `next.config.js` with a `basePath` setting:
+```typescript
+const nextConfig = {
+    output: 'export', // Exports the app as static HTML files
+    trailingSlash: true, // Adds a trailing slash to the end of each route (e.g., /about/)
+    basePath: '/next-app/out', // Your desired path prefix
+}
+```
+
+- Using the `basePath` value imported from `next.config.js` to handle [`Image`](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath#images) sources and other resources such as `Script` or external <link> tags:
+```typescript
+import Image from 'next/image'
+import { basePath } from '../next.config' // Get the basePath from the next config file
+
+export default function Example() {
+  return (
+    ...
+      <Image
+        src={`${basePath}/next.svg`}
+    ...
+  )
+}
+```
 
 ## Getting Started
 
@@ -14,23 +43,14 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/basepath](http://localhost:3000/basepath) in your browser (replace /basepath with your actual basePath setting) to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploying
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Since this project is set up for [Static Exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports), you can simply run the build command to generate the static files:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Then deploy the contents of the `out` folder to your host server, making sure it's served under the specified `basePath`.

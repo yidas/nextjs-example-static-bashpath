@@ -31,7 +31,13 @@ export default function Example() {
 
 ## Getting Started
 
-First, run the development server:
+Simply clone this Next.js project using the command below:
+
+```
+$ git clone https://github.com/yidas/nextjs-example-static-bashpath.git
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev

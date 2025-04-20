@@ -14,7 +14,7 @@ const nextConfig = {
 }
 ```
 
-- Using the `basePath` value imported from `next.config.js` to handle [`Image`](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath#images) sources and other resources such as `Script` or external <link> tags:
+- Since Next.js `basePath` is not automatically applied to some components, you can use the `basePath` value imported from `next.config.js` to handle [`Image`](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath#images) sources, as well as other resources like `Script` and external `<link>` tags:
 ```typescript
 import Image from 'next/image'
 import { basePath } from '../next.config' // Get the basePath from the next config file
